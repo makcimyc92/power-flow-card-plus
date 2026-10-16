@@ -40,7 +40,7 @@ function renderHomePhaseMetrics(hass, home) {
     const sensor = hass.states[entityId];
     const raw = sensor?.state;
     if (typeof raw !== "string" || raw.trim() === "" || !Number.isFinite(Number(raw))) return "—";
-    const value = r(Number(raw), hass.locale, { maximumFractionDigits: 1 });
+    const value = r(Number(raw), hass.locale, { maximumFractionDigits: fallbackUnit === "V" ? 0 : 1 });
     const unit = sensor?.attributes?.unit_of_measurement || fallbackUnit;
     return `${value}${unit || ""}`;
   };
