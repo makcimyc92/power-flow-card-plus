@@ -20,7 +20,7 @@ function renderGridPhaseVoltages(hass, grid) {
     return `${value}${sensor?.attributes?.unit_of_measurement || fallbackUnit}`;
   };
   return ne`<div class="grid-phase-voltages" aria-label="Grid phase power and voltage"
-    style="position:absolute;top:102px;left:calc(50% - 10px);transform:translateX(-50%);z-index:2;width:max-content;display:flex;flex-direction:column;align-items:flex-start;text-align:left;gap:2px;font-size:11px;line-height:14px;color:var(--secondary-text-color);background:var(--ha-card-background,var(--card-background-color));white-space:nowrap;font-variant-numeric:tabular-nums;pointer-events:none">
+    style="position:absolute;top:102px;left:0;z-index:2;width:max-content;display:flex;flex-direction:column;align-items:flex-start;text-align:left;gap:2px;font-size:11px;line-height:14px;color:var(--secondary-text-color);background:var(--ha-card-background,var(--card-background-color));white-space:nowrap;font-variant-numeric:tabular-nums;pointer-events:none">
     ${keys.map(key => {
       const voltage = metrics?.[key]?.voltage || legacy?.[key];
       return hasMetrics
@@ -44,7 +44,7 @@ function renderHomePhaseMetrics(hass, home) {
     const unit = sensor?.attributes?.unit_of_measurement || fallbackUnit;
     return `${value}${unit || ""}`;
   };
-  return ne`<div class="home-phase-metrics" aria-label="Home phase power and voltage" style="position:absolute;top:103px;left:calc(50% - 10px);transform:translateX(-50%);z-index:2;width:max-content;background:var(--ha-card-background,var(--card-background-color));display:flex;flex-direction:column;align-items:flex-start;text-align:left;gap:2px;font-size:11px;line-height:14px;color:var(--secondary-text-color);white-space:nowrap;font-variant-numeric:tabular-nums;pointer-events:none">
+  return ne`<div class="home-phase-metrics" aria-label="Home phase power and voltage" style="position:absolute;top:103px;left:-30px;z-index:2;width:max-content;background:var(--ha-card-background,var(--card-background-color));display:flex;flex-direction:column;align-items:flex-start;text-align:left;gap:2px;font-size:11px;line-height:14px;color:var(--secondary-text-color);white-space:nowrap;font-variant-numeric:tabular-nums;pointer-events:none">
     ${["l1", "l2", "l3"].map(key => renderPhaseMetricRow(key, read(phases[key]?.voltage, "V"), read(phases[key]?.power, "W")))}
   </div>`;
 }
